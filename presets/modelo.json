@@ -1,0 +1,15 @@
+{
+  "nome_projeto": "Nome do Programa ou Entrevista",
+  "descricao": "Breve descricao do tema abordado",
+  "contexto": "Transcricao do podcast ou entrevista sobre o tema X. Menção a nomes proprios relevantes, siglas como ABC (Associacao Brasileira de Cultura) e termos tecnicos.",
+  "participantes": [
+    {
+      "papel": "Entrevistador",
+      "nome": "Nome do Apresentador"
+    },
+    {
+      "papel": "Convidado",
+      "nome": "Nome do Convidado"
+    }
+  ]
+}

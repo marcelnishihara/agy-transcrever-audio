@@ -1,0 +1,17 @@
+{
+  "name": "agy-transcrever-audio",
+  "version": "0.0.1",
+  "description": "Skill para transcricao de audios individuais via OpenAI Whisper com identificacao de locutores e legendas SRT.",
+  "author": {
+    "name": "Marcel Nishihara",
+    "url": "https://github.com/marcelnishihara"
+  },
+  "homepage": "https://github.com/marcelnishihara/agy-transcrever-audio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcelnishihara/agy-transcrever-audio.git"
+  },
+  "skills": [
+    "agy-transcrever-audio"
+  ]
+}
