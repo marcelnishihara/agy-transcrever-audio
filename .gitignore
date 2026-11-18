@@ -1,0 +1,29 @@
+# Ambientes virtuais e interpretadores locais
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Chaves de API e credenciais privadas (NUNCA versionar)
+.env
+*.env
+
+# Arquivos de audio e gravacoes locais
+audios/*
+!audios/.gitkeep
+
+# Presets locais privados (versiona exclusivamente o modelo de exemplo)
+presets/*.json
+!presets/modelo.json
+
+# Arquivos de saida de texto e legendas gerados localmente
+*.txt
+*.srt
+audios/*.txt
+audios/*.srt
+!requirements.txt
+
+# Logs e arquivos de sistema
+*.log
+.DS_Store
