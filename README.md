@@ -47,37 +47,40 @@ A solução utiliza o modelo de alta fidelidade acústica da OpenAI (`gpt-transc
 
 ```mermaid
 flowchart TD
-    A[Arquivo de Áudio: .mp3 / .wav / .m4a] --> B{Cache TXT Existe?}
+    A[Arquivo de Áudio: .mp3 / .wav / .m4a] --> B{Cache TXT Existe no Disco?}
     B -->|Sim: Custo $0.00| C[Leitura do Texto Local]
     B -->|Não: Requisição OpenAI| D[OpenAI: gpt-transcribe com Contexto]
     D --> E[OpenAI: gpt-4o-mini para Diálogo Estruturado]
-    E --> F[Persistência: audio.txt]
-    F --> C
-    C --> G[ffprobe: Duração Total do Áudio]
-    G --> H[Algoritmo Local Python: Sincronização e Timestamps]
-    H --> I[Persistência Final: audio.srt]
+    E --> F[Texto Formatado em Memória RAM]
+    C --> F
+
+    F --> G{Opção --formato}
+    G -->|txt ou ambos| H[Persistência: audio.txt]
+    G -->|srt ou ambos| I[ffprobe: Duração Total do Áudio]
+    I --> J[Algoritmo Local Python: Sincronização e Timestamps]
+    J --> K[Persistência Final: audio.srt]
 ```
 
 ### Estrutura de Diretórios
 
 ```
 agy-transcrever-audio/
-├── .gemini/
-│   └── skills/
-│       └── agy-transcrever-audio/
-│           └── SKILL.md      # Manifesto da Skill e diretrizes para o agente
 ├── audios/                   # Pasta para arquivos de mídia locais (não versionada)
 │   └── .gitkeep
 ├── presets/                  # Templates de contexto e participantes
 │   └── modelo.json           # Template público de exemplo
 ├── scripts/
 │   └── transcrever.py        # CLI de execução principal (100% PEP 8)
+├── skills/
+│   └── agy-transcrever-audio/
+│       └── SKILL.md          # Especificação da Skill e parâmetros do Antigravity
 ├── .env.example              # Exemplo de configuração de credenciais
 ├── .gitignore                # Regras estritas de privacidade e exclusão
 ├── AUTHORS.md                # Créditos de autoria e guia de contribuição
 ├── install.ps1               # Script de instalação para Windows (PowerShell)
 ├── install.sh                # Script de instalação para Linux / macOS
-├── plugin.json               # Manifesto do plugin para Antigravity CLI
+├── LICENSE                   # Termos da licença MIT
+├── plugin.json               # Manifesto oficial de plugin Antigravity (v0.0.4)
 ├── README.md                 # Documentação principal do repositório
 └── requirements.txt          # Dependências mínimas do projeto
 ```
