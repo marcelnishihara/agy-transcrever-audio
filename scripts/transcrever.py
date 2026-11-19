@@ -430,21 +430,18 @@ def processar_transcricao(
             resposta_chat.choices[0].message.content or ""
         ).strip()
 
-        # Salva o arquivo de texto base para historico e cache
+    # 1. Geracao do formato textual (.txt) apenas quando solicitado
+    if formato in ("txt", "ambos"):
         with caminho_txt.open("w", encoding="utf-8") as f:
             f.write(texto_formatado + "\n")
         print(f"[Salvo] Transcricao textual gravada: {caminho_txt}")
 
-    # Geracao do formato SRT quando solicitado (padrao ou ambos)
+    # 2. Geracao do formato SRT (.srt) quando solicitado (padrao ou ambos)
     if formato in ("srt", "ambos"):
         print("[2/2] Gerando arquivo de legendas SRT sincronizadas...")
         duracao = obter_duracao_audio(caminho_audio)
         converter_dialogo_para_srt(texto_formatado, duracao, caminho_srt)
         print(f"[Salvo] Legenda gravada: {caminho_srt}")
-
-    # Se o usuario solicitou estritamente 'srt', remove o txt intermediario
-    if formato == "srt" and not caminho_txt.is_file():
-        pass
 
 
 def exibir_pre_checagem(
